@@ -68,6 +68,8 @@ export default function Home(props: JSONProps) {
 }
 
 export const getStaticProps = async () => {
+  if (process.env.SECRET_API_KEY === undefined)
+    throw new Error("Secrets don't exist");
   return {
     props: {
       data: process.env.SECRET_API_KEY
