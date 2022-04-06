@@ -16,6 +16,7 @@ export default function Home(props: JSONProps) {
       </Head>
 
       <main>
+        <p>Modified Snapshot</p>
         <h1 className={styles.title}>
           Welcome to <a href='https://nextjs.org'>Next.js!</a>
         </h1>
@@ -67,18 +68,11 @@ export default function Home(props: JSONProps) {
 }
 
 export const getStaticProps = async () => {
-  const data = await fetch('http://localhost:3000/api/demo', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      apiKey: process.env.SECRET_API_KEY,
-    }),
-  });
   return {
     props: {
-      data: await data.json(),
+      data: process.env.SECRET_API_KEY
+        ? ['secret', 'data']
+        : ['public', 'data'],
     },
   };
 };
