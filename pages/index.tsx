@@ -1,11 +1,9 @@
 import Head from 'next/head';
 import Image from 'next/image';
-import { useState } from 'react';
 
 import styles from '@/pages/index.module.css';
 
 export default function Home() {
-  const [count, setCount] = useState(0);
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +12,6 @@ export default function Home() {
       </Head>
 
       <main>
-        {count > 0 ? <p>Count: {count}</p> : null}
         <h1 className={styles.title}>
           Welcome to <a href='https://nextjs.org'>Next.js!</a>
         </h1>
