@@ -3,7 +3,11 @@ import Image from 'next/image';
 
 import styles from '@/pages/index.module.css';
 
-export default function Home() {
+type JSONProps = {
+  data?: string[];
+};
+export default function Home(props: JSONProps) {
+  console.log(props.data);
   return (
     <div className={styles.container}>
       <Head>
@@ -61,3 +65,20 @@ export default function Home() {
     </div>
   );
 }
+
+export const getStaticProps = async () => {
+  const data = await fetch('http://localhost:3000/api/demo', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      apiKey: process.env.SECRET_API_KEY,
+    }),
+  });
+  return {
+    props: {
+      data: await data.json(),
+    },
+  };
+};
