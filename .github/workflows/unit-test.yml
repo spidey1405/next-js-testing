@@ -23,4 +23,6 @@ jobs:
           yarn test:ci
       - name: Build the Project
         run: |
+          touch .env.local
+          echo SECRET_API_KEY=${{ secrets.SECRET_API_KEY }} >> .env.local
           yarn build
